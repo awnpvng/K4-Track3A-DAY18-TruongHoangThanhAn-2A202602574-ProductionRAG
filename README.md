@@ -1,6 +1,6 @@
 # Lab 18: Production RAG Pipeline
 
-**K4-Track3A · Ngày 18 · Production RAG**  
+**K4-Track3A · Ngày 18 · Production RAG**
 **Thời gian:** 2h implement + 30 phút reflection
 
 ---
@@ -17,13 +17,14 @@ Xem **ASSIGNMENT.md** để biết chi tiết từng module và timeline.
 
 ## Prerequisites
 
-| Dependency | Bắt buộc? | Dùng cho |
-|-----------|-----------|----------|
-| Docker (Qdrant) | ✅ Có | M2 Dense Search |
-| Python 3.11+ | ✅ Có | Tất cả modules (RAGAS cần 3.11+ cho asyncio) |
-| `OPENAI_API_KEY` | ⚠️ M4+M5 | RAGAS eval (M4), Enrichment LLM (M5) |
+| Dependency         | Bắt buộc? | Dùng cho                                       |
+| ------------------ | ----------- | ----------------------------------------------- |
+| Docker (Qdrant)    | ✅ Có      | M2 Dense Search                                 |
+| Python 3.11+       | ✅ Có      | Tất cả modules (RAGAS cần 3.11+ cho asyncio) |
+| `GEMINI_API_KEY` | ⚠️ M4+M5  | RAGAS eval (M4), Enrichment LLM (M5)            |
 
 **Pre-download models** (tránh timeout trong lab):
+
 ```bash
 python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
 python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('BAAI/bge-m3')"
@@ -35,6 +36,7 @@ python -c "from sentence_transformers import CrossEncoder; CrossEncoder('BAAI/bg
 ### 1. Clone repository & tạo môi trường ảo
 
 **Linux / macOS / Git Bash:**
+
 ```bash
 git clone <repo-url>
 cd K4-Track3A-Production-RAG
@@ -43,17 +45,20 @@ source .venv/bin/activate
 ```
 
 **Windows (PowerShell):**
+
 ```powershell
 git clone <repo-url>
 cd K4-Track3A-Production-RAG
 python -m venv .venv
 .venv\Scripts\Activate.ps1
 ```
+
 *(Nếu dùng Windows CMD: chạy `.venv\Scripts\activate.bat`)*
 
 ### 2. Cài đặt dependencies & Khởi động dịch vụ
 
 **Linux / macOS / Git Bash:**
+
 ```bash
 docker compose up -d                    # Khởi động Qdrant vector database
 pip install -r requirements.txt
@@ -62,12 +67,14 @@ python naive_baseline.py                # Khởi tạo baseline
 ```
 
 **Windows (PowerShell):**
+
 ```powershell
 docker compose up -d                    # Khởi động Qdrant vector database
 pip install -r requirements.txt
 Copy-Item .env.example .env             # Tạo file .env và điền OPENAI_API_KEY
 python naive_baseline.py                # Khởi tạo baseline
 ```
+
 *(Nếu dùng Windows CMD: dùng `copy .env.example .env` thay cho `Copy-Item`)*
 
 ## Chạy toàn bộ & Kiểm tra
@@ -134,17 +141,15 @@ K4-Track3A-Production-RAG/
 
 ## Timeline (Thời lượng ước tính)
 
-| Thời lượng | Hoạt động |
-|------------|-----------|
-| 10 phút | Setup môi trường + chạy `naive_baseline.py` |
-| 90 phút | Implement M1 → M2 → M3 → M4 → M5 |
-| 20 phút | Chạy pipeline + RAGAS + failure analysis |
-| 30 phút | Reflection: lecture mapping + project plan |
+| Thời lượng | Hoạt động                                     |
+| ------------- | ------------------------------------------------ |
+| 10 phút      | Setup môi trường + chạy`naive_baseline.py` |
+| 90 phút      | Implement M1 → M2 → M3 → M4 → M5             |
+| 20 phút      | Chạy pipeline + RAGAS + failure analysis        |
+| 30 phút      | Reflection: lecture mapping + project plan       |
 
 ## Quy chuẩn đặt tên Repository & Nộp bài
 
-- **Cấu trúc đặt tên repo:**  
-  `K4-Track3A-DAY18-<HoVaTen>-<MSSV>-ProductionRAG`  
-  *(Ví dụ: `K4-Track3A-DAY18-NguyenVanAn-AI20K001-ProductionRAG`)*
+- **Cấu trúc đặt tên repo:**`K4-Track3A-DAY18-<HoVaTen>-<MSSV>-ProductionRAG`*(Ví dụ: `K4-Track3A-DAY18-NguyenVanAn-AI20K001-ProductionRAG`)*
 - **Hạn chót nộp bài:** **23h59 ngày diễn ra bài lab (GMT+7)** trên cổng VLearn LMS / Codelab.
 - **Chi tiết yêu cầu:** Xem tại [ASSIGNMENT.md](ASSIGNMENT.md) và [RUBRIC.md](RUBRIC.md).
